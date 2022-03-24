@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{36883FA3-B134-44A3-BF60-0103FA127F86}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBusRabbitMQ", "src\EventBusRabbitMQ\EventBusRabbitMQ.csproj", "{557F4244-D5F8-4CB7-84AE-8AB5CEB63234}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BtcTrader.Domain", "src\BtcTrader.Domain\BtcTrader.Domain.csproj", "{3D783057-5716-46D9-9408-1668AD92E250}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BtcTrader.Infrastructure", "src\BtcTrader.Infrastructure\BtcTrader.Infrastructure.csproj", "{F2058EDC-E90D-4D96-BD41-A36690C2F006}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BtcTrader.Application", "src\BtcTrader.Application\BtcTrader.Application.csproj", "{BB7A5795-84A3-489E-8A4A-F82518A22EB6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BtcTrader.API", "src\BtcTrader.API\BtcTrader.API.csproj", "{5E2BBD45-A574-4295-96D8-809D8309D8B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{557F4244-D5F8-4CB7-84AE-8AB5CEB63234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{557F4244-D5F8-4CB7-84AE-8AB5CEB63234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{557F4244-D5F8-4CB7-84AE-8AB5CEB63234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{557F4244-D5F8-4CB7-84AE-8AB5CEB63234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D783057-5716-46D9-9408-1668AD92E250}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D783057-5716-46D9-9408-1668AD92E250}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D783057-5716-46D9-9408-1668AD92E250}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D783057-5716-46D9-9408-1668AD92E250}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2058EDC-E90D-4D96-BD41-A36690C2F006}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2058EDC-E90D-4D96-BD41-A36690C2F006}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2058EDC-E90D-4D96-BD41-A36690C2F006}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2058EDC-E90D-4D96-BD41-A36690C2F006}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB7A5795-84A3-489E-8A4A-F82518A22EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB7A5795-84A3-489E-8A4A-F82518A22EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB7A5795-84A3-489E-8A4A-F82518A22EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB7A5795-84A3-489E-8A4A-F82518A22EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E2BBD45-A574-4295-96D8-809D8309D8B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E2BBD45-A574-4295-96D8-809D8309D8B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E2BBD45-A574-4295-96D8-809D8309D8B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E2BBD45-A574-4295-96D8-809D8309D8B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{557F4244-D5F8-4CB7-84AE-8AB5CEB63234} = {36883FA3-B134-44A3-BF60-0103FA127F86}
+		{3D783057-5716-46D9-9408-1668AD92E250} = {36883FA3-B134-44A3-BF60-0103FA127F86}
+		{F2058EDC-E90D-4D96-BD41-A36690C2F006} = {36883FA3-B134-44A3-BF60-0103FA127F86}
+		{BB7A5795-84A3-489E-8A4A-F82518A22EB6} = {36883FA3-B134-44A3-BF60-0103FA127F86}
+		{5E2BBD45-A574-4295-96D8-809D8309D8B1} = {36883FA3-B134-44A3-BF60-0103FA127F86}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C42940B-85E2-48AC-BE10-DA42C3A12923}
+	EndGlobalSection
+EndGlobal
