@@ -46,7 +46,8 @@ namespace BtcTrader.Application.Services
                 IsSendPushNotification = order.AllowPushNotification,
                 IsSendSms = order.AllowSmsNotification,
                 NotificationText = notificationText,
-                SendDate = DateTime.UtcNow
+                SendDate = DateTime.UtcNow,
+                OrderId = id
             });
         }
     }

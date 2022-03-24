@@ -7,6 +7,10 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 using System.Reflection;
+using BtcTrader.Domain.Services;
+using BtcTrader.Application.Services;
+using BtcTrader.Application.Consumers;
+using EventBusRabbitMQ.Producer;
 
 namespace BtcTrader.Application
 {
@@ -16,6 +20,13 @@ namespace BtcTrader.Application
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddScoped<IHangfireJobService, HangfireJobService>();
+
+            services.AddSingleton<EventBusEmailNotificationConsumer>();
+            services.AddSingleton<EventBusPushNotificationConsumer>();
+            services.AddSingleton<EventBusSmsNotificationConsumer>();
+            services.AddSingleton<EventBusRabbitMQProducer>();
+
 
             #region Mapper
             var config = new MapperConfiguration(cfg =>
