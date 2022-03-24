@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BtcTrader.Application.Commands
 {
-    internal class SmsNotificationCommand
+    public class SmsNotificationCommand
     {
     }
 }

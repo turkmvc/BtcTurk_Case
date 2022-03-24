@@ -1,6 +1,10 @@
 ﻿using BtcTrader.Domain.Repositories;
 using BtcTrader.Domain.Services;
 
+using EventBusRabbitMQ.Core;
+using EventBusRabbitMQ.Events;
+using EventBusRabbitMQ.Producer;
+
 using System;
 using System.Threading.Tasks;
 
@@ -10,11 +14,12 @@ namespace BtcTrader.Application.Services
     {
         private readonly IOrderRepository orderRepository;
         private readonly INotificationHistoryRepository notificationHistoryRepository;
-
-        public HangfireJobService(IOrderRepository orderRepository, INotificationHistoryRepository notificationHistoryRepository)
+        private readonly EventBusRabbitMQProducer _eventBus;
+        public HangfireJobService(IOrderRepository orderRepository, INotificationHistoryRepository notificationHistoryRepository, EventBusRabbitMQProducer eventBus)
         {
             this.orderRepository = orderRepository;
             this.notificationHistoryRepository = notificationHistoryRepository;
+            _eventBus = eventBus;
         }
         public async Task BtcPurchasing(Guid id)
         {
@@ -27,13 +32,13 @@ namespace BtcTrader.Application.Services
             var notificationText = $@"{order.Amount} değerinde {btcCount} adet bitcoin alınmıştır.";
 
             if (order.AllowPushNotification)
-                throw new NotImplementedException();
+                _eventBus.Publish(EventBusConstants.pushNotification, new PushNotificationEvent(notificationText));
 
             if (order.AllowSmsNotification)
-                throw new NotImplementedException();
+                _eventBus.Publish(EventBusConstants.smsNotification, new SmsNotificationEvent(notificationText));
 
             if (order.AllowEmailNotification)
-                throw new NotImplementedException();
+                _eventBus.Publish(EventBusConstants.emailNotification, new EmailNotificationEvent(notificationText));
 
             await this.notificationHistoryRepository.AddNotificationHistory(new Domain.Dto.AddNotificationDto()
             {

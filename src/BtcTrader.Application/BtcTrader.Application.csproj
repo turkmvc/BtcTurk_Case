@@ -9,6 +9,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\BtcTrader.Domain\BtcTrader.Domain.csproj" />
+		<ProjectReference Include="..\EventBusRabbitMQ\EventBusRabbitMQ.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Commands\Notification\" />

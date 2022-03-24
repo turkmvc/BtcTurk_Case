@@ -15,7 +15,7 @@ namespace BtcTrader.Infrastructure.Mapping
             builder.Property(c => c.Id).HasDefaultValueSql("NEWID()");
             builder.Property(c => c.SendDate).IsRequired();
             builder.Property(c => c.OrderId).IsRequired();
-            builder.Property(c => c.NotificationText).IsRequired();
+            builder.Property(c => c.NotificationText).HasMaxLength(250).IsRequired();
             builder.Property(c => c.IsSendEmail).IsRequired();
             builder.Property(c => c.IsSendPushNotification).IsRequired();
             builder.Property(c => c.IsSendSms).IsRequired();
