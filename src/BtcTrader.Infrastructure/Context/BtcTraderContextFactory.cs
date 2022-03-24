@@ -11,8 +11,9 @@ namespace BtcTrader.Infrastructure.Context
         private readonly IConfiguration Configuration;
         public BtcTraderContextFactory()
         {
+            var dir = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName, "BtcTrader.API");
             Configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(dir)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables()
                 .Build();
