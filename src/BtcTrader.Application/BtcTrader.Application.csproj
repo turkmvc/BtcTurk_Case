@@ -10,6 +10,9 @@
 	<ItemGroup>
 		<ProjectReference Include="..\BtcTrader.Domain\BtcTrader.Domain.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Commands\Notification\" />
+	</ItemGroup>
 
 </Project>
 
