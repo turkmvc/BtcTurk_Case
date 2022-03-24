@@ -1,14 +1,14 @@
-﻿using System.Data;
+﻿using BtcTrader.Infrastructure.Context;
 
 namespace BtcTrader.Infrastructure.Repositories.Base
 {
     public abstract class RepositoryBase
     {
-        protected IDbConnection Connection { get; private set; }
+        protected BtcTraderContext context { get; private set; }
 
-        protected RepositoryBase(IDbConnection dbConnection)
+        protected RepositoryBase(BtcTraderContext context)
         {
-            Connection = dbConnection;
+            this.context = context;
         }
     }
 }

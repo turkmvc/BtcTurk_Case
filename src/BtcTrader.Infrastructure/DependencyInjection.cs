@@ -5,9 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using Microsoft.EntityFrameworkCore;
-
-using System.Data;
-using System.Data.SqlClient;
+using BtcTrader.Infrastructure.Context;
 
 namespace BtcTrader.Infrastructure
 {
@@ -15,8 +13,7 @@ namespace BtcTrader.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IDbConnection>(db => new SqlConnection(configuration.GetConnectionString("DbConnection")));
-
+            services.AddDbContext<BtcTraderContext>(x => x.UseSqlServer(configuration.GetConnectionString("DbConnection")));
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<INotificationHistoryRepository, NotificationHistoryRepository>();
 
