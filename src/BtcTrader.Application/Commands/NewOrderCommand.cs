@@ -13,7 +13,7 @@ namespace BtcTrader.Application.Commands
         /// <summary>
         /// Talimatın gerçkleşecek gün. Her ayın belirtilen gününde talimat çalışır. (1-28)
         /// </summary>
-        public int Day { get; set; }
+        public byte DayOfMonth { get; set; }
 
         /// <summary>
         /// Alınacak bitcoinin TL tutarı

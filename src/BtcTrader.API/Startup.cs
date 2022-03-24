@@ -6,6 +6,8 @@ using BtcTrader.Infrastructure;
 using EventBusRabbitMQ;
 using EventBusRabbitMQ.Producer;
 
+using FluentValidation.AspNetCore;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -70,6 +72,11 @@ namespace BtcTrader.API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BtcTrader.API", Version = "v1" });
+            });
+
+            services.AddMvc().AddFluentValidation(fv =>
+            {
+                fv.RegisterValidatorsFromAssemblyContaining<Validators.NewOrderRequestValidator>();
             });
         }
 

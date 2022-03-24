@@ -1,6 +1,8 @@
 ﻿
 using AutoMapper;
 
+using BtcTrader.Application.Commands;
+using BtcTrader.Domain.Dto;
 
 namespace BtcTrader.Application.Mapper
 {
@@ -8,6 +10,7 @@ namespace BtcTrader.Application.Mapper
     {
         public OrderProfile()
         {
+            CreateMap<NewOrderCommand, NewOrderDto>().ReverseMap();
         }
 
     }

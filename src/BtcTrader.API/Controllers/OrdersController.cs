@@ -56,7 +56,7 @@ namespace BtcTrader.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)] //TODO: object referans ... en sevdiğim
         public async Task<ActionResult> Delete([FromRoute] Guid id)
         {
-            await _mediator.Send(new DeleteOrderQuery()
+            await _mediator.Send(new DeleteOrderCommand()
             {
                 Id = id,
                 UserId = 61

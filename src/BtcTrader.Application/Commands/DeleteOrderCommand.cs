@@ -2,9 +2,9 @@
 
 using System;
 
-namespace BtcTrader.Application.Queries
+namespace BtcTrader.Application.Commands
 {
-    public class DeleteOrderQuery : IRequest
+    public class DeleteOrderCommand : IRequest
     {
         /// <summary>
         /// Silinecek talimat numarası
