@@ -10,6 +10,8 @@ using System;
 using BtcTrader.Domain.Repositories;
 using BtcTrader.Domain.Dto;
 using BtcTrader.Application.Exceptions;
+using BtcTrader.Domain.Services;
+using Hangfire;
 
 namespace BtcTrader.Application.Handlers
 {
@@ -19,6 +21,7 @@ namespace BtcTrader.Application.Handlers
         private readonly IMapper _mapper;
 
         public NewOrderCommandHandler(
+            IHangfireJobService hangfireJobService,
             IOrderRepository repository,
             IMapper mapper)
         {
@@ -31,11 +34,13 @@ namespace BtcTrader.Application.Handlers
             //Bir talimatı var mı?
             if (await repository.ExistOrderByUserId(request.UserId))
             {
-                throw new BadRequestException("Aktif bir talimatınız bulunmaktadır."); //TODO: custom exception
+                throw new BadRequestException("Aktif bir talimatınız bulunmaktadır.");
             }
-            //TODO: hangfire'dan job oluşmalıdır.
+            var id = await repository.NewOrder(_mapper.Map<NewOrderDto>(request));
+            //Her talimatın tekil olarak çalışması için ayrı ayrı job oluşturulur.
+            RecurringJob.AddOrUpdate<IHangfireJobService>(id.ToString(), x => x.BtcPurchasing(id), Cron.Monthly(request.DayOfMonth));
 
-            return await repository.NewOrder(_mapper.Map<NewOrderDto>(request));
+            return id;
         }
     }
 }

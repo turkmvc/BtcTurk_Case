@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BtcTrader.Application.Commands;
 using BtcTrader.Domain.Repositories;
 using BtcTrader.Application.Exceptions;
+using Hangfire;
 
 namespace BtcTrader.Application.Handlers
 {
@@ -28,7 +29,8 @@ namespace BtcTrader.Application.Handlers
             if (order.UserId != request.UserId) throw new UnauthorizedException("Yetkisiz erişim");
 
             await repository.DeleteOrder(order);
-
+            //jon silinir
+            RecurringJob.RemoveIfExists(request.Id.ToString());
             return Unit.Value;
         }
     }
