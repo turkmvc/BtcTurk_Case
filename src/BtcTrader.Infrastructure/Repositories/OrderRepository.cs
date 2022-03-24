@@ -37,5 +37,16 @@ namespace BtcTrader.Infrastructure.Repositories
 
             return entity.Id;
         }
+
+        public async Task<Domain.Entities.OrderEntity> GetOrder(Guid id)
+        {
+            return await context.Orders.FindAsync(id);
+        }
+
+        public Task DeleteOrder(Domain.Entities.OrderEntity entity)
+        {
+            context.Orders.Remove(entity);
+            return context.SaveChangesAsync();
+        }
     }
 }

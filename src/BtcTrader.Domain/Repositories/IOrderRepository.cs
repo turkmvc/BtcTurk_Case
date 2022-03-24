@@ -10,6 +10,8 @@ namespace BtcTrader.Domain.Repositories
     public interface IOrderRepository
     {
         Task<bool> ExistOrderByUserId(long userId);
+        Task<OrderEntity> GetOrder(Guid id);
         Task<Guid> NewOrder(NewOrderDto newOrderDto);
+        Task DeleteOrder(OrderEntity entity);
     }
 }
