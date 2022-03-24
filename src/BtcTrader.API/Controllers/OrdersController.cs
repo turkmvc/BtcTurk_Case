@@ -34,9 +34,9 @@ namespace BtcTrader.API.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType((int)HttpStatusCode.Created)] //TODO: oluşunca
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)] //TODO: validation hatası fırlatınca
-        [ProducesResponseType((int)HttpStatusCode.InternalServerError)] //TODO: object referans ... en sevdiğim
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<ActionResult> Post([FromBody] NewOrderRequest request)
         {
             var command = mapper.Map<NewOrderCommand>(request);
@@ -50,10 +50,10 @@ namespace BtcTrader.API.Controllers
 
         [HttpDelete]
         [Route("{id:guid}")]
-        [ProducesResponseType((int)HttpStatusCode.NoContent)] //TODO: başarılı silinince(iptal)
-        [ProducesResponseType((int)HttpStatusCode.Found)] //TODO: silmeye çalıştığı talep bulunamadıysa
-        [ProducesResponseType((int)HttpStatusCode.Unauthorized)] //TODO: silmeye çalıştığı talep başka kullanıcıya ait ise(Kararsızım github gibi 404 mi yapsak)
-        [ProducesResponseType((int)HttpStatusCode.InternalServerError)] //TODO: object referans ... en sevdiğim
+        [ProducesResponseType((int)HttpStatusCode.NoContent)] 
+        [ProducesResponseType((int)HttpStatusCode.Found)] 
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<ActionResult> Delete([FromRoute] Guid id)
         {
             await _mediator.Send(new DeleteOrderCommand()
@@ -67,10 +67,10 @@ namespace BtcTrader.API.Controllers
 
         [HttpGet]
         [Route("{id:guid}", Name = "Get")]
-        [ProducesResponseType((int)HttpStatusCode.OK)] //TODO: detay dönünce
-        [ProducesResponseType((int)HttpStatusCode.Found)] //TODO: göreye çalıştığı talep bulunamadıysa
-        [ProducesResponseType((int)HttpStatusCode.Unauthorized)] //TODO: görmeye çalıştığı talep başka kullanıcıya ait ise(Kararsızım github gibi 404 mi yapsak)
-        [ProducesResponseType((int)HttpStatusCode.InternalServerError)] //TODO: object referans ... en sevdiğim
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Found)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<ActionResult> Get([FromRoute] Guid id)
         {
             var dto = await _mediator.Send(new GetOrderQuery()

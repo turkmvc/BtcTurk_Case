@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BtcTrader.Application.Commands;
 using BtcTrader.Domain.Repositories;
+using BtcTrader.Application.Exceptions;
 
 namespace BtcTrader.Application.Handlers
 {
@@ -23,8 +24,8 @@ namespace BtcTrader.Application.Handlers
         public async Task<Unit> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
         {
             var order = await repository.GetOrder(request.Id);
-            if (order == null) throw new System.Exception("Talimat bulunamadı");
-            if (order.UserId != request.UserId) throw new System.Exception("Yetkisiz erişim");
+            if (order == null) throw new NotFoundException("Talimat bulunamadı");
+            if (order.UserId != request.UserId) throw new UnauthorizedException("Yetkisiz erişim");
 
             await repository.DeleteOrder(order);
 

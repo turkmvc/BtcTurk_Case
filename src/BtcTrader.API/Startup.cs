@@ -1,5 +1,6 @@
 //using BtcTrader.API.Consumers;
 using BtcTrader.API.Extensions;
+using BtcTrader.API.Filters;
 using BtcTrader.Application;
 using BtcTrader.Infrastructure;
 
@@ -74,7 +75,10 @@ namespace BtcTrader.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BtcTrader.API", Version = "v1" });
             });
 
-            services.AddMvc().AddFluentValidation(fv =>
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<ErrorFilter>();
+            }).AddFluentValidation(fv =>
             {
                 fv.RegisterValidatorsFromAssemblyContaining<Validators.NewOrderRequestValidator>();
             });

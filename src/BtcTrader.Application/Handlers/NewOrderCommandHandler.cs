@@ -9,6 +9,7 @@ using BtcTrader.Application.Commands;
 using System;
 using BtcTrader.Domain.Repositories;
 using BtcTrader.Domain.Dto;
+using BtcTrader.Application.Exceptions;
 
 namespace BtcTrader.Application.Handlers
 {
@@ -30,7 +31,7 @@ namespace BtcTrader.Application.Handlers
             //Bir talimatı var mı?
             if (await repository.ExistOrderByUserId(request.UserId))
             {
-                throw new Exception("Aktif bir talimatınız bulunmaktadır."); //TODO: custom exception
+                throw new BadRequestException("Aktif bir talimatınız bulunmaktadır."); //TODO: custom exception
             }
             //TODO: hangfire'dan job oluşmalıdır.
 
