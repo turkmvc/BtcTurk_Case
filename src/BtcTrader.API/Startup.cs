@@ -9,6 +9,8 @@ using EventBusRabbitMQ.Producer;
 
 using FluentValidation.AspNetCore;
 
+using Hangfire;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -82,6 +84,16 @@ namespace BtcTrader.API
             {
                 fv.RegisterValidatorsFromAssemblyContaining<Validators.NewOrderRequestValidator>();
             });
+
+            #region Hangfire
+            var dbConnection = Configuration["ConnectionStrings:DbConnection"];
+            services.AddHangfire(x =>
+            {
+                x.UseSqlServerStorage(dbConnection);
+            });
+
+            services.AddHangfireServer();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -99,6 +111,8 @@ namespace BtcTrader.API
             app.UseRouting();
             app.UseRabbitListener();
             app.UseAuthorization();
+
+            app.UseHangfireDashboard();
 
             app.UseEndpoints(endpoints =>
             {
