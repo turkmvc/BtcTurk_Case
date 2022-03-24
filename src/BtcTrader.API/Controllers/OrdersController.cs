@@ -44,7 +44,7 @@ namespace BtcTrader.API.Controllers
 
             var id = await _mediator.Send(command);
 
-            return CreatedAtAction("Get", new { id });
+            return CreatedAtRoute("Get", new { id }, null);
 
         }
 
@@ -66,7 +66,7 @@ namespace BtcTrader.API.Controllers
         }
 
         [HttpGet]
-        [Route("{id:guid}")]
+        [Route("{id:guid}", Name = "Get")]
         [ProducesResponseType((int)HttpStatusCode.OK)] //TODO: detay dönünce
         [ProducesResponseType((int)HttpStatusCode.Found)] //TODO: göreye çalıştığı talep bulunamadıysa
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)] //TODO: görmeye çalıştığı talep başka kullanıcıya ait ise(Kararsızım github gibi 404 mi yapsak)
