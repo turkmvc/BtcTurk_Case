@@ -23,7 +23,7 @@ API 3 uç hazırlanmıştır. `Orders` ve `NotificationHistories` talimatların 
 ## Kullanılan Teknoloji ve Kütüphaneler
 **Framework:** .NET Core 6.0 ile ASPNET Web Api
 
-**Database:** SQL Server
+**Database:** Postgre SQL
 
 **ORM:** [EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore "EntityFrameworkCore") & Mapping
 
