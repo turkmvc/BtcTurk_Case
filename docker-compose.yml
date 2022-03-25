@@ -1,0 +1,57 @@
+version: "3.8"
+services:
+  btc-rabbitmq:
+    image: rabbitmq:3-management
+    container_name: btc-rabbitmq
+    hostname: btc-rabbitmq
+    labels:
+      NAME: btc-rabbitmq
+    environment:
+            RABBITMQ_DEFAULT_USER: fgurdal
+            RABBITMQ_DEFAULT_PASS: 123456
+    ports: 
+       - 5672:5672
+       - 15672:15672
+    networks:
+      - btc-localhost
+    restart: always
+
+  btc-mssql:
+    container_name: btc-mssql
+    image: mcr.microsoft.com/mssql/server
+    ports:
+      - 1434:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Btc12345
+    networks:
+      - btc-localhost
+    restart: always
+
+  btc-webapi:
+    container_name: btc-webapi
+    image: btc-webapi
+    build:
+      context: .
+      dockerfile: Dockerfile    
+    ports:
+      - 12001:5000
+    links:
+      - btc-mssql
+    depends_on:
+      - "btc-mssql"
+      - "btc-rabbitmq"
+    networks:
+      - btc-localhost
+    restart: always
+    environment:
+      ConnectionStrings:DbConnection: "Data Source=btc-mssql;Initial Catalog=btcDb;User ID=sa;Password=Btc12345"
+      ASPNETCORE_ENVIRONMENT: "Development"
+      EventBus:HostName: "btc-rabbitmq"
+      EventBus:RetryCount: "4"
+      EventBus:UserName: "fgurdal"
+      EventBus:Password: "123456"
+
+networks:
+  btc-localhost:
+    driver: bridge
