@@ -1,5 +1,8 @@
-﻿using BtcTrader.API.Models;
+﻿using AutoMapper;
+
+using BtcTrader.API.Models;
 using BtcTrader.Application.Commands;
+using BtcTrader.Application.Queries;
 
 using EventBusRabbitMQ.Producer;
 
@@ -8,11 +11,9 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
+using System;
 using System.Net;
 using System.Threading.Tasks;
-using AutoMapper;
-using System;
-using BtcTrader.Application.Queries;
 
 namespace BtcTrader.API.Controllers
 {
@@ -50,8 +51,8 @@ namespace BtcTrader.API.Controllers
 
         [HttpDelete]
         [Route("{id:guid}")]
-        [ProducesResponseType((int)HttpStatusCode.NoContent)] 
-        [ProducesResponseType((int)HttpStatusCode.Found)] 
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.Found)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<ActionResult> Delete([FromRoute] Guid id)

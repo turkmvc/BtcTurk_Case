@@ -6,7 +6,7 @@
         /// Talimatın gerçkleşecek gün. Her ayın belirtilen gününde talimat çalışır. (1-28)
         /// </summary>
         public int DayOfMonth { get; set; }
-        
+
         /// <summary>
         /// Alınacak bitcoinin TL tutarı
         /// </summary>
@@ -25,7 +25,7 @@
         /// <summary>
         /// PushNotification bilgilendirmesi yapılacak mı?
         /// </summary>
-        public bool AllowPushNotification { get; set; } 
+        public bool AllowPushNotification { get; set; }
         #endregion
     }
 }

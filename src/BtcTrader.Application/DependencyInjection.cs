@@ -1,16 +1,17 @@
-﻿using BtcTrader.Application.Mapper;
+﻿using AutoMapper;
 
-using AutoMapper;
+using BtcTrader.Application.Consumers;
+using BtcTrader.Application.Mapper;
+using BtcTrader.Application.Services;
+using BtcTrader.Domain.Services;
+
+using EventBusRabbitMQ.Producer;
 
 using MediatR;
 
 using Microsoft.Extensions.DependencyInjection;
 
 using System.Reflection;
-using BtcTrader.Domain.Services;
-using BtcTrader.Application.Services;
-using BtcTrader.Application.Consumers;
-using EventBusRabbitMQ.Producer;
 
 namespace BtcTrader.Application
 {

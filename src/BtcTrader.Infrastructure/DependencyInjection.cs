@@ -1,11 +1,10 @@
 ﻿using BtcTrader.Domain.Repositories;
+using BtcTrader.Infrastructure.Context;
 using BtcTrader.Infrastructure.Repositories;
 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
-using Microsoft.EntityFrameworkCore;
-using BtcTrader.Infrastructure.Context;
 
 namespace BtcTrader.Infrastructure
 {

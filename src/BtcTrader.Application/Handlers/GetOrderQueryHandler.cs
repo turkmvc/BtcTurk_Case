@@ -1,14 +1,14 @@
-﻿using BtcTrader.Application.Queries;
-using BtcTrader.Application.Responses;
+﻿using AutoMapper;
 
-using AutoMapper;
+using BtcTrader.Application.Exceptions;
+using BtcTrader.Application.Queries;
+using BtcTrader.Application.Responses;
+using BtcTrader.Domain.Repositories;
 
 using MediatR;
 
 using System.Threading;
 using System.Threading.Tasks;
-using BtcTrader.Domain.Repositories;
-using BtcTrader.Application.Exceptions;
 
 namespace BtcTrader.Application.Handlers
 {

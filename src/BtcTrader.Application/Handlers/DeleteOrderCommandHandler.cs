@@ -1,13 +1,16 @@
 ﻿
 using AutoMapper;
 
+using BtcTrader.Application.Commands;
+using BtcTrader.Application.Exceptions;
+using BtcTrader.Domain.Repositories;
+
+using Hangfire;
+
 using MediatR;
+
 using System.Threading;
 using System.Threading.Tasks;
-using BtcTrader.Application.Commands;
-using BtcTrader.Domain.Repositories;
-using BtcTrader.Application.Exceptions;
-using Hangfire;
 
 namespace BtcTrader.Application.Handlers
 {

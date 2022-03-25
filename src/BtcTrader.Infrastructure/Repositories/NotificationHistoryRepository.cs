@@ -4,7 +4,6 @@ using BtcTrader.Domain.Repositories;
 using BtcTrader.Infrastructure.Context;
 using BtcTrader.Infrastructure.Repositories.Base;
 
-using System.Data;
 using System.Threading.Tasks;
 
 namespace BtcTrader.Infrastructure.Repositories
