@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BtcTrader.Infrastructure.Migrations
 {
-    public partial class InitialDB : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,13 +13,13 @@ namespace BtcTrader.Infrastructure.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
-                    DayOfMonth = table.Column<byte>(type: "tinyint", nullable: false),
-                    Amount = table.Column<int>(type: "int", nullable: false),
-                    AllowSmsNotification = table.Column<bool>(type: "bit", nullable: false),
-                    AllowEmailNotification = table.Column<bool>(type: "bit", nullable: false),
-                    AllowPushNotification = table.Column<bool>(type: "bit", nullable: false)
+                    DayOfMonth = table.Column<byte>(type: "smallint", nullable: false),
+                    Amount = table.Column<int>(type: "integer", nullable: false),
+                    AllowSmsNotification = table.Column<bool>(type: "boolean", nullable: false),
+                    AllowEmailNotification = table.Column<bool>(type: "boolean", nullable: false),
+                    AllowPushNotification = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,13 +30,13 @@ namespace BtcTrader.Infrastructure.Migrations
                 name: "NotificationHistories",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
-                    SendDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NotificationText = table.Column<int>(type: "int", nullable: false),
-                    IsSendSms = table.Column<bool>(type: "bit", nullable: false),
-                    IsSendEmail = table.Column<bool>(type: "bit", nullable: false),
-                    IsSendPushNotification = table.Column<bool>(type: "bit", nullable: false),
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SendDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    NotificationText = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
+                    IsSendSms = table.Column<bool>(type: "boolean", nullable: false),
+                    IsSendEmail = table.Column<bool>(type: "boolean", nullable: false),
+                    IsSendPushNotification = table.Column<bool>(type: "boolean", nullable: false),
+                    OrderId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {

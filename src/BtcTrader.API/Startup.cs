@@ -1,4 +1,3 @@
-//using BtcTrader.API.Consumers;
 using BtcTrader.API.Extensions;
 using BtcTrader.API.Filters;
 using BtcTrader.Application;
@@ -20,6 +19,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 using RabbitMQ.Client;
+using Hangfire.PostgreSql;
 
 namespace BtcTrader.API
 {
@@ -89,7 +89,7 @@ namespace BtcTrader.API
             var dbConnection = Configuration["ConnectionStrings:DbConnection"];
             services.AddHangfire(x =>
             {
-                x.UseSqlServerStorage(dbConnection);
+                x.UsePostgreSqlStorage(dbConnection);
             });
 
             services.AddHangfireServer();

@@ -10,7 +10,7 @@ namespace BtcTrader.Infrastructure.Mapping
         public void Configure(EntityTypeBuilder<NotificationHistoryEntity> builder)
         {
             builder.ToTable("NotificationHistories");
-            builder.Property(c => c.Id).HasDefaultValueSql("NEWID()");
+            builder.Property(c => c.Id);
             builder.Property(c => c.SendDate).IsRequired();
             builder.Property(c => c.OrderId).IsRequired();
             builder.Property(c => c.NotificationText).HasMaxLength(250).IsRequired();

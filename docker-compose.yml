@@ -16,14 +16,29 @@ services:
       - btc-localhost
     restart: always
 
-  btc-mssql:
-    container_name: btc-mssql
-    image: mcr.microsoft.com/mssql/server
+  btc-postgresql:
+    container_name: btc-postgresql
+    image: postgres:latest
     ports:
-      - 1434:1433
+      - 5532:5432
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Btc12345
+      - POSTGRES_PASSWORD=btc12345
+      - PGDATA=/data/postgres
+      - POSTGRES_DB=btcDb
+    volumes:
+      - btc-postgresql:/data/postgres
+    networks:
+      - btc-localhost
+    restart: always
+
+  btc-pgadmin:
+    container_name: btc-pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - 5050:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: btc12345
     networks:
       - btc-localhost
     restart: always
@@ -37,20 +52,22 @@ services:
     ports:
       - 12001:5000
     links:
-      - btc-mssql
+      - btc-postgresql
     depends_on:
-      - "btc-mssql"
+      - "btc-postgresql"
       - "btc-rabbitmq"
     networks:
       - btc-localhost
     restart: always
     environment:
-      ConnectionStrings:DbConnection: "Data Source=btc-mssql;Initial Catalog=btcDb;User ID=sa;Password=Btc12345"
+      ConnectionStrings:DbConnection: "Server=btc-postgresql;Port=5432;Database=btcDb;User Id=postgres;Password=btc12345"
       ASPNETCORE_ENVIRONMENT: "Development"
       EventBus:HostName: "btc-rabbitmq"
       EventBus:RetryCount: "4"
       EventBus:UserName: "fgurdal"
       EventBus:Password: "123456"
+volumes:
+    btc-postgresql:
 
 networks:
   btc-localhost:

@@ -12,7 +12,8 @@ namespace BtcTrader.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<BtcTraderContext>(x => x.UseSqlServer(configuration.GetConnectionString("DbConnection")));
+            new BtcTraderContextFactory().Migrate();
+            services.AddDbContext<BtcTraderContext>(x => x.UseNpgsql(configuration.GetConnectionString("DbConnection")));
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<INotificationHistoryRepository, NotificationHistoryRepository>();
 
