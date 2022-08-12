@@ -67,7 +67,6 @@ namespace BtcTrader.API
                 return new DefaultRabbitMQPersistentConnection(factory, retryCount, logger);
             });
 
-            //services.AddSingleton<EventBus_EVENTNAME_Consumer>();
             services.AddSingleton<EventBusRabbitMQProducer>();
 
             #endregion

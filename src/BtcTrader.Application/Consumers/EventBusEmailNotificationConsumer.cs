@@ -9,6 +9,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
 using System;
+using System.Net.Sockets;
 using System.Text;
 
 namespace BtcTrader.Application.Consumers
@@ -30,8 +31,9 @@ namespace BtcTrader.Application.Consumers
             }
 
             var channel = _persistentConnection.CreateModel();
+            channel.CallbackException += Channel_CallbackException;
             channel.QueueDeclare(queue: EventBusConstants.emailNotification, durable: false, exclusive: false, autoDelete: false, arguments: null);
-
+            
             var consumer = new EventingBasicConsumer(channel);
 
             consumer.Received += ReceivedEvent;
@@ -39,11 +41,15 @@ namespace BtcTrader.Application.Consumers
             channel.BasicConsume(queue: EventBusConstants.emailNotification, autoAck: true, consumer: consumer);
         }
 
+        private void Channel_CallbackException(object sender, CallbackExceptionEventArgs e)
+        {
+            //TODO: Exception handle
+        }
+
         private void ReceivedEvent(object sender, BasicDeliverEventArgs e)
         {
             var message = Encoding.UTF8.GetString(e.Body.Span);
             var @event = JsonConvert.DeserializeObject<EmailNotificationEvent>(message);
-
             //Send email notification codes
         }
 
